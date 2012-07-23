@@ -29,11 +29,24 @@ describe "add", ->
 
   it "should ignore numbers greater than 1000", ->
     expect(add('3,1001')).toEqual(3)
-    expect(add('4,1000')).toEqual(4)
+    expect(add('4,1000')).toEqual(1004)
 
   it "should support arbitrary length delimeters", ->
     expect(add('//[***]\n1***2***3')).toEqual(6)
 
   it "should support multiple delimeters", ->
     expect(add('//[*][%]\n1*2%3')).toEqual(6)
-    expect(add('//[**][%%]\n1*5%4')).toEqual(10)
+
+  it "should output the results to the console", ->
+    spyOn(console, 'log')
+
+    add('5,9,3')
+
+    expect(console.log).toHaveBeenCalledWith(17)
+
+  it "should provide a method the user can call from the console", ->
+    spyOn(console, 'log')
+
+    scalc('7,8,9')
+
+    expect(console.log).toHaveBeenCalledWith('the result is 24')

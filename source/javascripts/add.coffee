@@ -1,3 +1,4 @@
+# calculator kata http://osherove.com/tdd-kata-1/
 splitNumbers = (str, delimeters) ->
   numbers = []
 
@@ -9,7 +10,7 @@ splitNumbers = (str, delimeters) ->
     numbers = (parseInt(num) for num in str.match(/\d+/g))
 
   (for n in numbers
-    if n >= 1000
+    if n > 1000
       0
     else
       (n || 0)
@@ -39,4 +40,9 @@ window.add = (str) ->
   for number in splitNumbers(str, delimeters)
     result += number
 
+  console.log result
+  console.log "the result is #{result}"
+
   result
+
+window.scalc = window.add
